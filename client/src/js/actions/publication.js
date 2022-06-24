@@ -61,7 +61,6 @@ export const editPublication = (id, publication) => (dispatch) => {
     .put(`http://localhost:6500/user/publication/${id.id}`, formData)
     .then((res) => {
       alert("Publication modifier avec succes");
-
       dispatch({
         type: EDIT_PUBLICATION,
         payload: { ...res.data.user },

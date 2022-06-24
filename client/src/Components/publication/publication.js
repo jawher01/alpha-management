@@ -36,7 +36,7 @@ const Publication = ({ publication }) => {
   const [comment, setComment] = useState("");
   const user = useSelector((state) => state.userReducer.user);
 
-  const isOwner = publication && user && publication.user._id == user._id;
+  const isOwner = publication.user._id == user._id;
   const renderName = (c) => {
     if (c.user._id == user._id) return "moi";
     return c.user.nom;

@@ -3,15 +3,25 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 exports.register = async (req, res) => {
-  const { nom, prenom, email, password,role ,forma,salaire,classes} = req.body;
+  const { nom, prenom, email, password, role, forma, salaire, classes } =
+    req.body;
   try {
-    const newUser = new User({ nom, prenom, email, password,role,forma,salaire,classes});
+    const newUser = new User({
+      nom,
+      prenom,
+      email,
+      password,
+      role,
+      forma,
+      salaire,
+      classes,
+    });
     if (req.files.length > 0) {
-      req.files.map(file => {
-        newUser.receipt = "http://127.0.0.1:6500/public/" + file.originalname
-      })
+      req.files.map((file) => {
+        newUser.receipt = "http://127.0.0.1:6500/public/" + file.originalname;
+      });
     } else {
-      newUser.receipt = "http://127.0.0.1:6500/public/default.png"
+      newUser.receipt = "http://127.0.0.1:6500/public/default.png";
     }
     //   check if the email exist
     const searchedUser = await User.findOne({ email });
@@ -23,7 +33,7 @@ exports.register = async (req, res) => {
     const salt = 10;
     const genSalt = await bcrypt.genSalt(salt);
     const hashedPassword = await bcrypt.hash(password, genSalt);
-   
+
     newUser.password = hashedPassword;
 
     // save the user
@@ -83,64 +93,67 @@ exports.current = (req, res) => {
   res.status(200).send({ user: req.user });
 };
 
-
-exports.DeleteOneUser= async (req, res) => {
+exports.DeleteOneUser = async (req, res) => {
   try {
-        const result = await User.deleteOne({ _id: req.params.id })
-        result
-              ? res.send({ message: "utilisateur supprimé" })
-              : res.send({ message: "il n'y a pas d'utilisateur avec cet identifiant" });
-
+    const result = await User.deleteOne({ _id: req.params.id });
+    result
+      ? res.send({ message: "utilisateur supprimé" })
+      : res.send({
+          message: "il n'y a pas d'utilisateur avec cet identifiant",
+        });
   } catch (error) {
-        res.status(400).send({ message: "il n'y a pas d'utilisateur avec cet identifiant" });
-
+    res
+      .status(400)
+      .send({ message: "il n'y a pas d'utilisateur avec cet identifiant" });
   }
 };
 
-
 //get all user
-exports.GetAllUser = async (req,res)=>{
+exports.GetAllUser = async (req, res) => {
   try {
-    const result = await User.find().populate("publication")
-    res.status(200).send({ response: result, message: "obtenir utilisateur avec succes" });
-} catch (error) {
+    const result = await User.find().populate("publication");
+    res
+      .status(200)
+      .send({ response: result, message: "obtenir utilisateur avec succes" });
+  } catch (error) {
     res.status(400).send({ message: "ne peut pas obtenir l'utilisateur" });
-}
+  }
 };
 
 //update a user by id
-exports.UpdateUser= async (req, res) => {
+exports.UpdateUser = async (req, res) => {
   try {
-    const user={...req.body}
+    const user = { ...req.body };
     if (req.files.length > 0) {
-      req.files.map(file => {
-        user.receipt = "http://127.0.0.1:6500/public/" + file.originalname
-      })
+      req.files.map((file) => {
+        user.receipt = "http://127.0.0.1:6500/public/" + file.originalname;
+      });
     }
-        const result = await User.updateOne(
-              { _id: req.params.id },
-              { $set: { ...user } })
-        result.nModified ?
-              res.send({ message: "profile mis à jour" }) :
-              res.send({ message: "profile déjà mis à jour"})
+    const result = await User.updateOne(
+      { _id: req.params.id },
+      { $set: { ...user } }
+    );
+    result.nModified
+      ? res.send({ message: "profile mis à jour" })
+      : res.send({ message: "profile déjà mis à jour" });
   } catch (error) {
-        res.status(400).send({message:"il n'y a pas de profil"});
+    res.status(400).send({ message: "il n'y a pas de profil" });
   }
 };
-
 
 //GET one User
 exports.GetOneUser = async (req, res) => {
   try {
-        const result = await User.findOne({ _id: req.params.id }).populate("publication")
-        res.send({ response: result, message: "obtenir l'utilisateur avec succès" });
+    const result = await User.findOne({ _id: req.params.id }).populate(
+      "publication"
+    );
+    res.send({
+      response: result,
+      message: "obtenir l'utilisateur avec succès",
+    });
   } catch (error) {
-        res.status(400).send({ message: "il n'y a pas de user avec cet identifiant" });
+    res
+      .status(400)
+      .send({ message: "il n'y a pas de user avec cet identifiant" });
   }
 };
-
-
-
-
-
-

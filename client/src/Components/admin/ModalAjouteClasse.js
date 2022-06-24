@@ -9,6 +9,7 @@ import { getAllFormation } from "../../js/actions/formation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postClasse } from "../../js/actions/classe";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -23,20 +24,16 @@ const style = {
 
 export default function ModalAjouteClasse() {
   const dispatch = useDispatch();
- 
+
   useEffect(() => {
     dispatch(getAllFormation());
   }, []);
 
+ 
   const formations = useSelector((state) => state.formationReducer.formation);
 
- 
-
-
-  const [formation, setForma] = useState("");
+  const [formati, setForma] = useState("");
   const [nom, setNom] = useState("");
-  
-
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -44,9 +41,9 @@ export default function ModalAjouteClasse() {
 
   return (
     <div>
-    <Button variant='contained' onClick={handleOpen}>
-    Ajouter un classe
-  </Button>
+      <Button variant='contained' onClick={handleOpen}>
+        Ajouter un classe
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -80,7 +77,7 @@ export default function ModalAjouteClasse() {
                 id='outlined-select-currency-native'
                 select
                 label='formation'
-                value=""
+                value={formati}
                 onChange={(e) => setForma(e.target.value)}
                 SelectProps={{
                   native: true,
@@ -88,16 +85,12 @@ export default function ModalAjouteClasse() {
                 variant='outlined'
               >
                 <option disabled>-- selectioner un formation --</option>
-                {formations.map((formation) => (
-                  <option key={formation._id} value={formation._id}>
-                    {formation.nom}
+                {formations.map((formati) => (
+                  <option key={formati._id} value={formati._id}>
+                    {formati.nom}
                   </option>
                 ))}
               </TextField>
-
-            
-            
-             
             </Box>
 
             <Button
@@ -107,7 +100,7 @@ export default function ModalAjouteClasse() {
                 dispatch(
                   postClasse({
                     nom,
-                    formation,
+                    formati,
                   }),
                   window.location.reload(false)
                 )

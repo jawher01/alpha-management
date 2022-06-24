@@ -29,19 +29,18 @@ export default function BasicModal() {
   const [content, setContent] = useState("");
   const [img, setImg] = useState("");
 
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const fileChanged = (e) => {
     e.preventDefault();
-    setImg({[e.target.name]:(e.target.files[0])});
+    setImg({ [e.target.name]: e.target.files[0] });
   };
 
   return (
     <div>
-      <div style={{marginLeft:"2%"}}>
+      <div style={{ marginLeft: "2%" }}>
         <Button variant='contained' onClick={handleOpen}>
           Ajouter un publication
         </Button>
@@ -65,14 +64,14 @@ export default function BasicModal() {
               noValidate
               autoComplete='off'
             >
-            <TextField
-            required
-            id='outlined-required'
-            label='image'
-            name="img"
-            onChange={fileChanged}
-            type="file"
-          />
+              <TextField
+                required
+                id='outlined-required'
+                label='image'
+                name='img'
+                onChange={fileChanged}
+                type='file'
+              />
               <TextField
                 required
                 id='outlined-required'
@@ -80,7 +79,7 @@ export default function BasicModal() {
                 defaultValue={user.nom}
                 onChange={(e) => setNom(e.target.value)}
                 InputProps={{
-                  readOnly: false,
+                  readOnly: true,
                 }}
               />
               <TextField
@@ -108,7 +107,7 @@ export default function BasicModal() {
               variant='contained'
               type='submit'
               onClick={() =>
-                dispatch(postPublication({ nom, titre, content, user ,img}))
+                dispatch(postPublication({ nom, titre, content, user, img }))
               }
             >
               ajouter

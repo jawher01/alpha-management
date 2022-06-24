@@ -19,7 +19,7 @@ const Classes = () => {
   }, [getAllClasses]);
   const classes = useSelector((state) => state.classeReducer.classe);
   const loadclasses = useSelector((state) => state.classeReducer.loadclasses);
-
+  console.log(classes);
   return (
     <div>
       <div>
@@ -59,7 +59,7 @@ const Classes = () => {
                       <div>{classe.formation.nom}</div>
                     </td>
                     <td>
-                      <div style={{ display: "flex" ,marginRight: "150px"}}>
+                      <div style={{ display: "flex", marginRight: "150px" }}>
                         <div style={{ display: "flex" }}>
                           <div style={{ marginRight: "3%" }}>
                             <Ajouteretudiant cll={classe._id} />

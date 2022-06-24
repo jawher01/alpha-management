@@ -14,7 +14,7 @@ const Classeset = () => {
   const classes = useSelector((state) => state.classeReducer.classe);
   const user = useSelector((state) => state.userReducer.user);
 
-console.log(classes[3].proffeseur)
+
   let forms = [];
   for (let i = 0; i < classes.length; i++) {
     for (let j = 0; j < classes[i].proffeseur.length; j++) {

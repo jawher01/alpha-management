@@ -31,7 +31,7 @@ export const getClasse = (id) => (dispatch) => {
 export const postClasse = (user) => async (dispatch) => {
   let formData = new FormData();
   formData.append("nom", user.nom);
-  formData.append("formation", user.formation);
+  formData.append("formation", user.formati);
 
   axios
     .post("http://localhost:6500/classe", formData)

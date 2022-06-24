@@ -55,7 +55,8 @@ const ModalClasseEt = (id) => {
                 user: user._id,
                 classe:idCl,
                 content:cours.cours,
-              });
+              })
+              window.location.reload();
              
             }}
           >

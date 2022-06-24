@@ -10,7 +10,7 @@ import LogoutBtn from "../Components/auth/LougOutButton";
 import { getAllFormation } from "../js/actions/formation";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-
+import Button from "@mui/material/Button";
 function Navbar() {
   const dispatch = useDispatch();
   const [sidebar, setSidebar] = useState(false);
@@ -35,13 +35,15 @@ function Navbar() {
               display: "flex",
               marginRight: "5%",
               justifycontent: " space-between",
-              marginTop:"-3%",
+              marginTop: "-3%",
             }}
           >
             <div style={{ marginRight: "30%" }}>
-              <Link to={`/profil/${id}`} style={{ textDecoration: "none" }}>
-                profile
-              </Link>
+              <Button  variant='error'>
+                <Link to={`/profil/${id}`} style={{ textDecoration: "none" }}>
+                  profile
+                </Link>
+              </Button>
             </div>
 
             <LogoutBtn />

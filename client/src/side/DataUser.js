@@ -6,12 +6,7 @@ import * as IoIcons from 'react-icons/io';
 
 export const DataUser = [
 
-  {
-    title: 'Acceil',
-    path: '/acceil',
-    icon: <AiIcons.AiFillHome />,
-    cName: 'nav-text'
-  },
+
   {
     title: 'Forum',
     path: '/forum',

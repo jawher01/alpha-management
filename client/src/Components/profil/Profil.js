@@ -90,16 +90,7 @@ export default function Profil() {
                   readOnly: true,
                 }}
               />
-              <TextField
-                required
-                id='outlined-password-input'
-                label='password'
-                type='password'
-                defaultValue={user.password}
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
+             
             </div>
             <TextField
               required
@@ -137,22 +128,8 @@ export default function Profil() {
                 readOnly: true,
               }}
             />
-            <TextField
-              id='filled-number'
-              label='salaire'
-              defaultValue={user.salaire}
-              InputProps={{
-                readOnly: true,
-              }}
-            />
-            <TextField
-              id='filled-search'
-              label='formation'
-              defaultValue=''
-              InputProps={{
-                readOnly: true,
-              }}
-            />
+
+          
           </div>
         </Box>
       </div>

@@ -19,7 +19,7 @@ const Login = () => {
 
   useEffect(() => {
     if (userAuth === true) {
-      navigate("/acceil");
+      navigate("/forum");
     } else {
       navigate("/");
     }

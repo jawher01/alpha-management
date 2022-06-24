@@ -136,8 +136,7 @@ export default function BasicModal() {
                     role,
                     salaire,
                     classe,
-                  }),
-                  window.location.reload(false)
+                  })
                 )
               }
             >

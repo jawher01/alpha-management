@@ -9,14 +9,14 @@ export default () => {
 
   return (
     <Button
-      variant='outlined'
+     
       color='error'
       onClick={() => {
         dispatch(logout());
         navigate("/");
       }}
     >
-      Logout
+      deconnecter
     </Button>
   );
 };
